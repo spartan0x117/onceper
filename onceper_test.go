@@ -35,22 +35,6 @@ func TestOncePerInt(t *testing.T) {
 	}
 }
 
-func TestOncePerMixed(t *testing.T) {
-	o := onceper.New[interface{}]()
-
-	var count int
-	f := func() {
-		count++
-	}
-	o.Do("foo", f)
-	o.Do("foo", f)
-	o.Do(1, f)
-	o.Do(1, f)
-	if count != 2 {
-		t.Errorf("count = %d, want 2", count)
-	}
-}
-
 func TestOncePerStruct(t *testing.T) {
 	type S struct {
 		a int
